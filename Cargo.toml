@@ -6,7 +6,7 @@ authors = ["Jauhien Piatlicki <jauhien@gentoo.org>"]
 build = "build.rs"
 
 [dependencies]
-llvm-sys = "40"
+llvm-sys = "40.0.1"
 libc= "0.2.39"
 
 [build-dependencies]

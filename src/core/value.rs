@@ -359,14 +359,14 @@ pub trait Function : Const {
     fn get_attr(&self) -> LLVMAttributeRef {
         unsafe {
             let mut thing;
-            LLVMGetAttributeAtIndex(self.to_ref(),0,thing);
-            return thing;
+            LLVMGetAttributesAtIndex(self.to_ref(),0,thing);
+            return *thing;
         }
     }
 
     fn remove_attr(&mut self, attr: LLVMAttributeRef) {
         unsafe {
-            LLVMRemoveFunctionAttr(self.to_ref(), attr)
+            LLVMRemoveAttributeAtIndex(self.to_ref(),0, attr)
         }
     }
 
@@ -489,8 +489,8 @@ pub trait Argument : Value {
     fn get_attr(&self) -> LLVMAttributeRef {
         unsafe {
             let mut thing;
-            LLVMGetAttributeAtIndex(self.to_ref(),0,thing);
-            return thing;
+            LLVMGetAttributesAtIndex(self.to_ref(),0,thing);
+            return *thing;
         }
     }
 
