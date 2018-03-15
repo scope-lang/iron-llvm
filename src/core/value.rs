@@ -350,19 +350,21 @@ pub trait Function : Const {
         }
     }
 
-    fn add_attr(&mut self, attr: LLVMAttribute) {
+    fn add_attr(&mut self, attr: LLVMAttributeRef) {
         unsafe {
-            LLVMAddFunctionAttr(self.to_ref(), attr)
+            LLVMAddAttributeAtIndex(self.to_ref(),0, attr)
         }
     }
 
-    fn get_attr(&self) -> LLVMAttribute {
+    fn get_attr(&self) -> LLVMAttributeRef {
         unsafe {
-            LLVMGetFunctionAttr(self.to_ref())
+            let mut thing;
+            LLVMGetAttributeAtIndex(self.to_ref(),0,thing);
+            return thing;
         }
     }
 
-    fn remove_attr(&mut self, attr: LLVMAttribute) {
+    fn remove_attr(&mut self, attr: LLVMAttributeRef) {
         unsafe {
             LLVMRemoveFunctionAttr(self.to_ref(), attr)
         }
@@ -478,21 +480,23 @@ pub trait Argument : Value {
         }
     }
 
-    fn add_attr(&self, attr: LLVMAttribute) {
+    fn add_attr(&self, attr: LLVMAttributeRef) {
         unsafe {
-            LLVMAddAttribute(self.to_ref(), attr)
+            LLVMAddAttributeAtIndex(self.to_ref(),0,attr)
         }
     }
 
-    fn get_attr(&self) -> LLVMAttribute {
+    fn get_attr(&self) -> LLVMAttributeRef {
         unsafe {
-            LLVMGetAttribute(self.to_ref())
+            let mut thing;
+            LLVMGetAttributeAtIndex(self.to_ref(),0,thing);
+            return thing;
         }
     }
 
-    fn remove_attr(&self, attr: LLVMAttribute) {
+    fn remove_attr(&self, attr: LLVMAttributeRef) {
         unsafe {
-            LLVMRemoveAttribute(self.to_ref(), attr)
+            LLVMRemoveAttributeAtIndex(self.to_ref(),0, attr)
         }
     }
 
