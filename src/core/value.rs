@@ -365,9 +365,9 @@ pub trait Function : Const {
     }
 
     fn remove_attr(&mut self, attr: LLVMAttributeRef) {
-        unsafe {
-            LLVMRemoveAttributeAtIndex(self.to_ref(),0, attr)
-        }
+        //unsafe {
+            //LLVMRemoveAttributeAtIndex(self.to_ref(),0, attr)
+        //}
     }
 
     fn count_params(&self) -> u32 {
@@ -495,9 +495,9 @@ pub trait Argument : Value {
     }
 
     fn remove_attr(&self, attr: LLVMAttributeRef) {
-        unsafe {
-            LLVMRemoveAttributeAtIndex(self.to_ref(),0, attr)
-        }
+        //unsafe {
+            //LLVMRemoveAttributeAtIndex(self.to_ref(),0, attr)
+        //}
     }
 
     fn set_alignment(&self, align: u32) {
